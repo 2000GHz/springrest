@@ -30,6 +30,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy to EBS'){
+            steps {
+                withAWS(credentials: 'AWS Credentials') {
+                    sh 'eb deploy'
+                }
+            }
+        }   
     }
 }        
         
