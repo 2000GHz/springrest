@@ -1,0 +1,7 @@
+version: "3"
+services:
+  hello-springrest:
+    image: ghcr.io/2000ghz/hello-springrest/hello-springrest
+    build: .
+    ports:
+      - "8080:8080"
