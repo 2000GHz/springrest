@@ -34,6 +34,7 @@ pipeline {
         stage('Deploy to EBS'){
             steps {
                 withAWS(credentials: 'AWS Credentials') {
+                    sh 'pwd'
                     sh '~/.ebcli-virtual-env/executables/eb deploy'
                 }
             }
