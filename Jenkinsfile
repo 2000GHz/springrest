@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Login') {
+        stage('Push Image to GHCR') {
             steps{
                 echo 'Logging into GitHub'
                 withCredentials([string(credentialsId: 'Token-GitHub', variable: 'GITHUB_TOKEN')]) {
