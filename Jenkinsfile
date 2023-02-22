@@ -25,8 +25,8 @@ pipeline {
                 echo 'Logging into GitHub'
                 withCredentials([string(credentialsId: 'Token-GitHub', variable: 'GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_TOKEN | docker login ghcr.io -u 2000ghz --password-stdin'
-                    sh 'docker push ghcr.io/2000ghz/hello-springrest/hello-springrest:1.0.${BUILD_NUMBER}' // Push image with tag 1.0.BuildNumber
-                    sh 'docker push ghcr.io/2000ghz/hello-springrest/hello-springrest:latest' // Push image with tag latest
+                    sh 'docker-compose push ghcr.io/2000ghz/hello-springrest/hello-springrest:1.0.${BUILD_NUMBER}' // Push image with tag 1.0.BuildNumber
+                    sh 'docker-compose push ghcr.io/2000ghz/hello-springrest/hello-springrest:latest' // Push image with tag latest
                 }
             }
         }
