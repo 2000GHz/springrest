@@ -34,7 +34,7 @@ pipeline {
         stage('Deploy to EBS'){
             steps {
                 withAWS(credentials: 'AWS Credentials') {
-                    sh 'eb deploy'
+                    sh '/usr/bin/eb deploy'
                 }
             }
         }   
