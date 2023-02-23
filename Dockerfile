@@ -9,3 +9,5 @@ WORKDIR /app
 COPY --from=builder /home/gradle/build/libs/rest-service-0.0.1-SNAPSHOT.jar .
 ENTRYPOINT ["/bin/sh", "-c"]
 CMD ["java -jar rest-service-0.0.1-SNAPSHOT.jar"]
+
+USER 1000
