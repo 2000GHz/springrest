@@ -1,12 +1,9 @@
 branch-defaults:
   main:
-    environment: hello-springrest-dev
-environment-defaults:
-  hello-springrest-dev:
-    branch: null
-    repository: null
+    environment: springrest-dev
+    group_suffix: null
 global:
-  application_name: hello-springrest
+  application_name: springrest
   branch: null
   default_ec2_keyname: clave-lucatic
   default_platform: Docker running on 64bit Amazon Linux 2

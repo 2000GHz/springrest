@@ -59,7 +59,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'AWS Credentials') {
                     sh 'pwd'
-                    sh '~/.ebcli-virtual-env/executables/eb deploy hello-springrest-dev -v'     
+                    sh '~/.ebcli-virtual-env/executables/eb deploy springrest-dev -v'     
                 }
             }
         }
