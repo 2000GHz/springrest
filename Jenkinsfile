@@ -26,17 +26,20 @@ pipeline {
             }
         }
 
-        stage('PMD Test') {
+       stage('PMD Test') {
             steps {
-                sh './gradlew pmdMain'
+                sh './gradlew pmdTest'
             }
             post {
                 always {
-                    recordIssues tool: pmd(pattern: '**/pmd.xml')
+                    recordIssues(
+                        enabledForFailure: true,
+                        tool: pmd(pattern: 'build/reports/pmd/test.xml')
+                    )
                 }
             }
         }
-
+        
         stage('Publish HTML') {
             steps {
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, includes: '**/jacoco/html/**', keepAll: false, reportDir: 'build/reports/jacoco/', reportFiles: 'index.html', reportName: 'jacocoReport'])
