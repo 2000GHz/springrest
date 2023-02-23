@@ -14,7 +14,7 @@ pipeline {
             }
             post{
                 always{
-                    junit allowEmptyResults: true, keepLongStdio: true, testResults: '/Gradle/build/test-results/test/*xml'
+                    junit allowEmptyResults: true, keepLongStdio: true, testResults: '/build/test-results/test/*xml'
                 }
             }
         }
