@@ -16,10 +16,10 @@ pipeline {
 
                 // Scan in all vulnerability levels
                 sh 'mkdir -p reports'
-                sh '/home/linuxbrew/.linuxbrew/bin/trivy fs --vuln-type os,library,secret --format template --template "@junit.tpl" -o trivyscanresults.xml .'
+                sh '/home/linuxbrew/.linuxbrew/bin/trivy fs --vuln-type os,library,secret --format json -o trivyscanresults.json .'
             }
             post {
-                always {recordIssues(tools: [trivy(pattern: 'trivyscanresults.xml')])}
+                always {recordIssues(tools: [trivy(pattern: 'trivyscanresults.json')])}
             }
          }
 
