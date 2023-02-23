@@ -26,15 +26,11 @@ pipeline {
             }
         }
 
-        stage('Publish Jacoco Report') {
+        stage('Publish HTML') {
             steps {
-                publishCoverage(
-                    adapters: [jacocoAdapter('build/reports/jacoco/test.exec')],
-                    sourceFileResolver: sourceFiles('src/main/java'),
-                    reportDir: 'build/reports/jacoco/html'
-                )
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, includes: '**/jacoco/html/**', keepAll: false, reportDir: 'build/reports/jacoco/', reportFiles: 'index.html', reportName: 'jacocoReport'])
             }
-}
+        }
 
         stage('Build') {
             steps {
