@@ -62,7 +62,7 @@ pipeline {
         //             sh '~/.ebcli-virtual-env/executables/eb deploy -v hello-springrest-dev'      Commented until EBS creation to test JaCoCo 
         //         }
         //     }
-        }
+        
 
     }
 }        
