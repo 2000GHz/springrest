@@ -55,13 +55,13 @@ pipeline {
             }
         }
 
-        stage('Deploy to EBS'){
-            steps {
-                withAWS(credentials: 'AWS Credentials') {
-                    sh 'pwd'
-                    sh '~/.ebcli-virtual-env/executables/eb deploy -v hello-springrest-dev'
-                }
-            }
+        // stage('Deploy to EBS'){
+        //     steps {
+        //         withAWS(credentials: 'AWS Credentials') {
+        //             sh 'pwd'
+        //             sh '~/.ebcli-virtual-env/executables/eb deploy -v hello-springrest-dev'      Commented until EBS creation to test JaCoCo 
+        //         }
+        //     }
         }
 
     }
