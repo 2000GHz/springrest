@@ -12,21 +12,17 @@ pipeline {
             steps {
                 sh 'mkdir -p reports'
                 sh '/home/linuxbrew/.linuxbrew/bin/trivy fs --vuln-type os,library,secret --format json -o trivyscanresults-filesystem.json .'
+                recordIssues(tools: [trivy(pattern: 'trivyscanresults-filesystem.json')])
             }
-            post {
-                always {recordIssues(tools: [trivy(pattern: 'trivyscanresults-filesystem.json')])}
-            }
-         }
+        }
 
          stage('Trivy Scan Image') {
             steps {
                 sh 'mkdir -p reports'
                 sh '/home/linuxbrew/.linuxbrew/bin/trivy image --vuln-type os,library,secret --format json -o trivyscanresults-image.json ghcr.io/2000ghz/springrest:latest'
+                recordIssues(tools: [trivy(pattern: 'trivyscanresults-image.json')])
             }
-            post {
-                always {recordIssues(tools: [trivy(pattern: 'trivyscanresults-image.json')])}
-            }
-         }
+        }
 
         stage ('Gradle test') {
             steps {
