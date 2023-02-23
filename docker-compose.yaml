@@ -4,4 +4,4 @@ services:
     image: ghcr.io/2000ghz/hello-springrest
     build: .
     ports:
-      - "8080:8080"
+      - "80:8080"
