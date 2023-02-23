@@ -40,12 +40,6 @@ pipeline {
             }
         }
 
-        stage('Publish HTML') {
-            steps {
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, includes: '**/jacoco/html/**', keepAll: false, reportDir: 'build/reports/jacoco/', reportFiles: 'index.html', reportName: 'jacocoReport'])
-            }
-        }
-
         stage('Build') {
             steps {
                 sh '''docker-compose build
