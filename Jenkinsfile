@@ -8,7 +8,7 @@ pipeline {
 
     stages {
 
-         stage('Scan') {
+         stage('Trivy Scan') {
             steps {
                 // Download latest html template
                 // sh 'curl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl'
