@@ -8,18 +8,23 @@ pipeline {
 
     stages {
 
-         stage('Trivy Scan') {
+         stage('Trivy Scan Filesystem') {
             steps {
-                // Download latest html template
-                // sh 'curl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl'
-                // sh 'curl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/junit.tpl'
-
-                // Scan in all vulnerability levels
                 sh 'mkdir -p reports'
-                sh '/home/linuxbrew/.linuxbrew/bin/trivy fs --vuln-type os,library,secret --format json -o trivyscanresults.json .'
+                sh '/home/linuxbrew/.linuxbrew/bin/trivy fs --vuln-type os,library,secret --format json -o trivyscanresults-filesystem.json .'
             }
             post {
-                always {recordIssues(tools: [trivy(pattern: 'trivyscanresults.json')])}
+                always {recordIssues(tools: [trivy(pattern: 'trivyscanresults-filesystem.json')])}
+            }
+         }
+
+         stage('Trivy Scan Image') {
+            steps {
+                sh 'mkdir -p reports'
+                sh '/home/linuxbrew/.linuxbrew/bin/trivy image --vuln-type os,library,secret --format json -o trivyscanresults-image.json ghcr.io/2000ghz/springrest:latest'
+            }
+            post {
+                always {recordIssues(tools: [trivy(pattern: 'trivyscanresults-image.json')])}
             }
          }
 
