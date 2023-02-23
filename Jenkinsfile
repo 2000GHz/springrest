@@ -8,6 +8,26 @@ pipeline {
 
     stages {
 
+         stage('Scan') {
+            steps {
+                // Download latest html template
+                // sh 'curl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl'
+                // sh 'curl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/junit.tpl'
+
+                // Scan in all vulnerability levels
+                sh 'mkdir -p reports'
+                sh 'trivy fs --vuln-type os,library,secret --format template --template "@junit.tpl" -o reports/scanresults.xml .'
+            }
+            post {
+                always {
+                    recordIssues(
+                        enabledForFailure: true, aggregatingResults: true,
+                        tool: trivy(pattern: '/reports/scanresults.xml')
+                    )
+                }
+            }
+         }
+
         stage ('Gradle test') {
             steps {
                 sh './gradlew test'
@@ -62,16 +82,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy to EBS'){
-            steps {
-                withAWS(credentials: 'AWS Credentials') {
-                    sh 'pwd'
-                    sh '~/.ebcli-virtual-env/executables/eb deploy springrest-dev -v'     
-                }
-            }
-        }
-        
     }
 }        
         
