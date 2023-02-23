@@ -62,8 +62,7 @@ pipeline {
                     sh '~/.ebcli-virtual-env/executables/eb deploy -v hello-springrest-dev'     
                 }
             }
-        
-
+        }
     }
 }        
         
