@@ -1,4 +1,5 @@
 .elasticbeanstalk
 .git
+.gitignore
 Jenkinsfile
 README.md
