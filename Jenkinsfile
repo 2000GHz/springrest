@@ -22,7 +22,7 @@ pipeline {
                 always {
                     recordIssues(
                         enabledForFailure: true, aggregatingResults: true,
-                        tool: trivy(pattern: 'reports/scanresults.xml')
+                        tool: trivy(pattern: '@reports/scanresults.xml')
                     )
                 }
             }
