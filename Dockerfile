@@ -2,7 +2,7 @@ FROM gradle:alpine AS builder
 WORKDIR /home/gradle
 COPY . .
 RUN gradle build 
-LABEL org.opencontainers.image.source https://github.com/2000GHz/hello-springrest
+LABEL org.opencontainers.image.source https://github.com/2000GHz/springrest
 
 FROM amazoncorretto:11-alpine AS runtime
 WORKDIR /app
