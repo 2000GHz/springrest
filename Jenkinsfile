@@ -71,6 +71,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy to EBS'){
+            steps {
+                withAWS(credentials: 'AWS Credentials') {
+                    sh '~/.ebcli-virtual-env/executables/eb deploy springrest-dev'     
+                }
+            }
+        }
     }
 }        
         
